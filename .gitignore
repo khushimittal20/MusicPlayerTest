@@ -1,0 +1,16 @@
+# VS Code settings
+.vscode/
+
+# Build files
+*.exe
+*.out
+*.obj
+*.o
+
+# Temporary files
+*.log
+*.tmp
+
+# OS-specific
+.DS_Store
+Thumbs.db
