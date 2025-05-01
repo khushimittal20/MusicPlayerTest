@@ -17,6 +17,8 @@ public:
 
     void display() const; 
     std::string getTitle() const;
+    std::string getArtist() const;   // Add this line
+    std::string getAlbum() const;    // Add this line
     std::string getFilename() const;
     float getDuration() const;
 };

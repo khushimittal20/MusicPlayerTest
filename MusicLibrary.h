@@ -9,6 +9,9 @@ private:
     std::vector<Song> songs;
 
 public:
+    void loadFromFile(const std::string& filename);
+    void saveToFile(const std::string& filename) const;
+
     void addSong(const Song& song);
     void displayAllSongs() const;
     Song* searchSong(const std::string& title);

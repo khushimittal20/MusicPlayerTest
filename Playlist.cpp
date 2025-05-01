@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <mmsystem.h>
 #include <limits>
+#include <algorithm>
 
 #pragma comment(lib, "winmm.lib")
 
@@ -44,4 +45,14 @@ void Playlist::playAll() const {
 
 std::string Playlist::getName() const {
     return name;
+}
+
+void Playlist::removeSong(const std::string& title) {
+    auto it = std::remove_if(songs.begin(), songs.end(), [&title](const Song& song) {
+        return song.getTitle() == title;
+    });
+
+    if (it != songs.end()) {
+        songs.erase(it, songs.end());
+    }
 }

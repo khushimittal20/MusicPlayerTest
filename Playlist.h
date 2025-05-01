@@ -17,6 +17,7 @@ public:
     void showPlaylist() const;
     void playAll() const;
     std::string getName() const;
+    void removeSong(const std::string& title);
 };
 
 #endif 

@@ -4,9 +4,13 @@
 #include <iostream>
 #include <limits>
 #include <windows.h>
-#include <mmsystem.h>  
+#include <mmsystem.h> 
+#include <algorithm> 
 #pragma comment(lib, "winmm.lib") 
 
+MusicLibrary& Player::getLibrary() {
+    return library;  // Accessor method to get the library
+}
 
 Player::Player() : user("admin", "1234") {
     currentPlaylist = new Playlist("My Playlist");
@@ -41,6 +45,10 @@ void Player::run() {
         std::cout << "4. Show Playlist\n";
         std::cout << "5. Play Playlist\n";
         std::cout << "6. Play a Song by Title\n";
+        std::cout << "7. Create New Playlist\n";
+        std::cout << "8. Select Playlist\n";
+        std::cout << "9. Delete Playlist\n";
+        std::cout << "10. Delete Song from Playlist\n";
         std::cout << "0. Exit\n";
         std::cout << "Enter choice: ";
         std::cin >> choice;
@@ -53,6 +61,10 @@ void Player::run() {
             case 4: currentPlaylist->showPlaylist(); break;
             case 5: currentPlaylist->playAll(); break;
             case 6: playSongByTitle(); break;
+            case 7: createPlaylist(); break;
+            case 8: selectPlaylist(); break;
+            case 9: deletePlaylist(); break;
+            case 10: deleteSongFromPlaylist(); break;
             case 0: std::cout << "Exiting Music Player.\n"; break;
             default: std::cout << "Invalid choice.\n";
         }
@@ -103,5 +115,61 @@ void Player::playSongByTitle() {
         playSong(*song);
     } else {
         std::cout << "Song not found.\n";
+    }
+}
+
+void Player::createPlaylist() {
+    std::string name;
+    std::cout << "Enter the name for the new playlist: ";
+    std::getline(std::cin, name);
+
+    Playlist* newPlaylist = new Playlist(name);
+    playlists.push_back(newPlaylist);
+    currentPlaylist = newPlaylist;  // Select the new playlist
+    std::cout << "Playlist created and selected: " << name << "\n";
+}
+
+void Player::selectPlaylist() {
+    std::cout << "Enter the name of the playlist you want to select: ";
+    std::string name;
+    std::getline(std::cin, name);
+
+    for (auto& playlist : playlists) {
+        if (playlist->getName() == name) {
+            currentPlaylist = playlist;
+            std::cout << "Selected playlist: " << name << "\n";
+            return;
+        }
+    }
+    std::cout << "Playlist not found.\n";
+}
+
+void Player::deletePlaylist() {
+    std::cout << "Enter the name of the playlist to delete: ";
+    std::string name;
+    std::getline(std::cin, name);
+
+    auto it = std::remove_if(playlists.begin(), playlists.end(), [&name](Playlist* playlist) {
+        return playlist->getName() == name;
+    });
+
+    if (it != playlists.end()) {
+        delete *it;
+        playlists.erase(it);
+        std::cout << "Playlist deleted: " << name << "\n";
+    } else {
+        std::cout << "Playlist not found.\n";
+    }
+}
+void Player::deleteSongFromPlaylist() {
+    std::string title;
+    std::cout << "Enter the song title to remove from the playlist: ";
+    std::getline(std::cin, title);
+
+    if (currentPlaylist) {
+        currentPlaylist->removeSong(title);
+        std::cout << "Song removed from playlist.\n";
+    } else {
+        std::cout << "No playlist selected.\n";
     }
 }
