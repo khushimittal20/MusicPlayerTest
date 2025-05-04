@@ -85,7 +85,7 @@ void Player::run() {
             case 1: addSongToLibrary(); break;
             case 2: library.displayAllSongs(); break;
             case 3: addSongToPlaylist(); break;
-            case 4: currentPlaylist->showPlaylist(); break;
+            case 4: showPlaylists(); break;
             case 5: // Check if there are any playlists first
             if (playlists.empty()) {
                 std::cout << "No playlists available to play.\n";
@@ -263,10 +263,20 @@ void Player::playSong(const Song& song) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     PlaySound(NULL, NULL, 0);
 }
+// void Player::showPlaylists() {
+//     std::cout << "=== Playlists ===\n";
+//     for (auto& pl : playlists) {
+//         std::cout << "Playlist: " << pl->getName() << std::endl;
+//         pl->showPlaylist();  // Display songs in the playlist
+//     }
+// }
 void Player::showPlaylists() {
-    std::cout << "=== Playlists ===\n";
-    for (auto& pl : playlists) {
-        std::cout << "Playlist: " << pl->getName() << std::endl;
-        pl->showPlaylist();  // Display songs in the playlist
+    if (playlists.empty()) {
+        std::cout << "No playlists available.\n";  // No playlists message
+    } else {
+        std::cout << "=== Playlists ===\n";
+        for (const auto& pl : playlists) {
+            std::cout << pl->getName() << std::endl;  // Access name of each playlist via pointer
+        }
     }
 }
