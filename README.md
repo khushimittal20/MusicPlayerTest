@@ -29,15 +29,6 @@ Use a C++ compiler with support for Windows libraries:
 g++ main.cpp Player.cpp MusicLibrary.cpp Playlist.cpp Song.cpp User.cpp -o music_player -lwinmm
 .\music_player
 ```
-## Future Improvements
-
-- Add volume control and mute/unmute functionality
-- Search songs by artist, album, or genre
-- Enhance playlist management with sorting and filtering
-- Introduce graphical user interface (GUI) using frameworks like Qt or SFML
-- Support for additional audio formats (e.g., MP3, FLAC) using libraries like SDL2 or FMOD
-- Online streaming support or integration with APIs
-- Cross-platform support (Linux/MacOS)
 
 ## Methodology
 
@@ -47,8 +38,15 @@ g++ main.cpp Player.cpp MusicLibrary.cpp Playlist.cpp Song.cpp User.cpp -o music
 - **Multimedia:** Used WinMM (`<windows.h>` and `<mmsystem.h>`) for `.wav` playback
 - **Design:** Modular file structure with separate header and source files for each class
 
-## File Structure
-![image](https://github.com/user-attachments/assets/2096b540-7011-4b61-8e77-dfb39cdd3254)
+## Future Improvements
+
+- Add volume control and mute/unmute functionality
+- Search songs by artist, album, or genre
+- Enhance playlist management with sorting and filtering
+- Introduce graphical user interface (GUI) using frameworks like Qt or SFML
+- Support for additional audio formats (e.g., MP3, FLAC) using libraries like SDL2 or FMOD
+- Online streaming support or integration with APIs
+- Cross-platform support (Linux/MacOS)
 
 
 
