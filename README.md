@@ -24,6 +24,8 @@ This is a command-line based music player developed in C++ using Object-Oriented
 - **Design:** Modular file structure with separate header and source files for each class
 
 ## File Structure
+![image](https://github.com/user-attachments/assets/2096b540-7011-4b61-8e77-dfb39cdd3254)
+
 
 ## How to Run
 
