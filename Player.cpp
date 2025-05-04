@@ -24,19 +24,43 @@ Player::~Player() {
 void Player::run() {
 
     std::string uname, pass;
-    std::cout << "=== Login ===\nUsername: ";
-    std::getline(std::cin, uname);
-    std::cout << "Password: ";
-    std::getline(std::cin, pass);
-
-    if (!user.validateLogin(uname, pass)) {
-        std::cout << "Invalid credentials. Exiting...\n";
-        return;  
-    }
-
-    std::cout << "Login successful. Welcome, " << user.getUsername() << "!\n";
-    
     int choice;
+    std::cout << "=== Music Player ===\n";
+    std::cout << "1. Login\n";
+    std::cout << "2. Register\n";
+    std::cout << "Enter choice: ";
+    std::cin >> choice;
+    std::cin.ignore();  
+
+    if (choice == 1) {  
+        std::cout << "=== Login ===\n";
+        std::cout << "Username: ";
+        std::getline(std::cin, uname);
+        std::cout << "Password: ";
+        std::getline(std::cin, pass);
+
+        if (!User::validateLoginFromFile(uname, pass)) {
+            std::cout << "Invalid credentials. Exiting...\n";
+            return;
+        }
+
+        std::cout << "Login successful. Welcome, " << uname << "!\n";
+    } else if (choice == 2) {  
+        std::cout << "=== Register ===\n";
+        std::cout << "Choose a username: ";
+        std::getline(std::cin, uname);
+        std::cout << "Choose a password: ";
+        std::getline(std::cin, pass);
+
+        if (User::registerUser(uname, pass)) {
+            std::cout << "Registration successful. You can now log in.\n";
+            return;
+        }
+    } else {
+        std::cout << "Invalid choice.\n";
+        return;
+    }
+    
     do {
         std::cout << "\n=== Music Player Menu ===\n";
         std::cout << "1. Add Song to Library\n";
