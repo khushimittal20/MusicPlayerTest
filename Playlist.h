@@ -18,6 +18,8 @@ public:
     void playAll() const;
     std::string getName() const;
     void removeSong(const std::string& title);
+    void loadFromFile();  // Load playlist from file
+    void saveToFile() const;  // Save playlist to file
 };
 
 #endif 

@@ -30,7 +30,8 @@ void Player::run() {
     std::cout << "2. Register\n";
     std::cout << "Enter choice: ";
     std::cin >> choice;
-    std::cin.ignore();  
+    // std::cin.ignore(); 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignore leftover newline 
 
     if (choice == 1) {  
         std::cout << "=== Login ===\n";
@@ -85,7 +86,14 @@ void Player::run() {
             case 2: library.displayAllSongs(); break;
             case 3: addSongToPlaylist(); break;
             case 4: currentPlaylist->showPlaylist(); break;
-            case 5: currentPlaylist->playAll(); break;
+            case 5: // Check if there are any playlists first
+            if (playlists.empty()) {
+                std::cout << "No playlists available to play.\n";
+            } else {
+                currentPlaylist->playAll();  // Play the playlist if available
+            }
+            break;
+            // currentPlaylist->playAll(); break;
             case 6: playSongByTitle(); break;
             case 7: createPlaylist(); break;
             case 8: selectPlaylist(); break;
@@ -111,14 +119,45 @@ void Player::addSongToLibrary() {
     std::cout << "Song added to library.\n";
 }
 
+// void Player::addSongToPlaylist() {
+//     std::string title;
+//     std::cout << "Enter song title to add to playlist: ";
+//     std::getline(std::cin, title);
+//     Song* song = library.searchSong(title);
+//     if (song) {
+//         currentPlaylist->addSong(*song);
+//         std::cout << "Added to playlist: " << song->getTitle() << "\n";  
+//     } else {
+//         std::cout << "Song not found in library.\n";
+//     }
+// }
 void Player::addSongToPlaylist() {
-    std::string title;
-    std::cout << "Enter song title to add to playlist: ";
+    std::string title, playlistName;
+    std::cout << "Enter the playlist name to add song to: ";
+    std::getline(std::cin, playlistName);
+
+    // Search for the playlist by name
+    Playlist* selectedPlaylist = nullptr;
+    for (auto& playlist : playlists) {
+        if (playlist->getName() == playlistName) {
+            selectedPlaylist = playlist;
+            break;
+        }
+    }
+
+    if (!selectedPlaylist) {
+        std::cout << "Playlist not found.\n";
+        return;
+    }
+
+    // Ask for song title
+    std::cout << "Enter the song title to add: ";
     std::getline(std::cin, title);
-    Song* song = library.searchSong(title);
+    Song* song = library.searchSong(title);  // Search for song in library
+
     if (song) {
-        currentPlaylist->addSong(*song);
-        std::cout << "Added to playlist: " << song->getTitle() << "\n";  
+        selectedPlaylist->addSong(*song);  // Add song to selected playlist
+        std::cout << "Song added to playlist: " << playlistName << "\n";
     } else {
         std::cout << "Song not found in library.\n";
     }
@@ -223,4 +262,11 @@ void Player::playSong(const Song& song) {
     std::cout << "(Press Enter to stop playback)\n";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     PlaySound(NULL, NULL, 0);
+}
+void Player::showPlaylists() {
+    std::cout << "=== Playlists ===\n";
+    for (auto& pl : playlists) {
+        std::cout << "Playlist: " << pl->getName() << std::endl;
+        pl->showPlaylist();  // Display songs in the playlist
+    }
 }

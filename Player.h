@@ -6,6 +6,7 @@
 #include "MusicLibrary.h"
 #include "Playlist.h"
 #include <string>
+#include <vector>
 #include "User.h"
 
 class Player {
@@ -28,6 +29,7 @@ public:
     void deletePlaylist();  
     void deleteSongFromPlaylist();  
     void deleteSongFromLibrary();
+    void showPlaylists();
 };
 
 #endif 

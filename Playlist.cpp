@@ -1,4 +1,6 @@
 #include "Playlist.h"
+#include "Song.h"
+#include <fstream>
 #include <iostream>
 #include <windows.h>
 #include <mmsystem.h>
@@ -8,10 +10,13 @@
 #pragma comment(lib, "winmm.lib")
 
 
-Playlist::Playlist(std::string n) : name(n) {}
+Playlist::Playlist(std::string n) : name(n) {
+    loadFromFile();
+}
 
 void Playlist::addSong(const Song& song) {
     songs.push_back(song);
+    saveToFile();
 }
 
 // void Playlist::showPlaylist() const {
@@ -26,6 +31,7 @@ void Playlist::showPlaylist() const {
         std::cout << "=== Playlist ===\n";
         for (const auto& song : songs) {
             std::cout << "Title: " << song.getTitle()<< "\n";
+            song.display();
         }
     }
 }
@@ -54,5 +60,31 @@ void Playlist::removeSong(const std::string& title) {
 
     if (it != songs.end()) {
         songs.erase(it, songs.end());
+        saveToFile(); 
+    }
+}
+void Playlist::loadFromFile() {
+    std::ifstream file(name + ".txt");
+    if (file.is_open()) {
+        std::string title, artist, album, filename;
+        float duration;
+        while (file >> title >> artist >> album >> duration >> filename) {
+            songs.push_back(Song(title, artist, album, duration, filename));
+        }
+        file.close();
+    }
+}
+
+void Playlist::saveToFile() const {
+    std::ofstream file(name + ".txt");
+    if (file.is_open()) {
+        for (const auto& song : songs) {
+            file << song.getTitle() << " "
+                 << song.getArtist() << " "
+                 << song.getAlbum() << " "
+                 << song.getDuration() << " "
+                 << song.getFilename() << "\n";
+        }
+        file.close();
     }
 }
