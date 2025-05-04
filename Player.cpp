@@ -49,6 +49,7 @@ void Player::run() {
         std::cout << "8. Select Playlist\n";
         std::cout << "9. Delete Playlist\n";
         std::cout << "10. Delete Song from Playlist\n";
+        std::cout << "11. Delete Song from Library\n";
         std::cout << "0. Exit\n";
         std::cout << "Enter choice: ";
         std::cin >> choice;
@@ -65,6 +66,7 @@ void Player::run() {
             case 8: selectPlaylist(); break;
             case 9: deletePlaylist(); break;
             case 10: deleteSongFromPlaylist(); break;
+            case 11: deleteSongFromLibrary(); break;
             case 0: std::cout << "Exiting Music Player.\n"; break;
             default: std::cout << "Invalid choice.\n";
         }
@@ -171,5 +173,20 @@ void Player::deleteSongFromPlaylist() {
         std::cout << "Song removed from playlist.\n";
     } else {
         std::cout << "No playlist selected.\n";
+    }
+}
+
+void Player::deleteSongFromLibrary() {
+    std::string title;
+    std::cout << "Enter the title of the song to delete from library: ";
+    std::getline(std::cin, title);
+    if (library.deleteSong(title)) {
+        for (auto& pl : playlists)
+            pl->removeSong(title);
+        if (currentPlaylist)
+            currentPlaylist->removeSong(title);
+        std::cout << "Song deleted from library and all playlists.\n";
+    } else {
+        std::cout << "Song not found.\n";
     }
 }

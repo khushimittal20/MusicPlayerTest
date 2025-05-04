@@ -27,6 +27,7 @@ public:
     void selectPlaylist();  
     void deletePlaylist();  
     void deleteSongFromPlaylist();  
+    void deleteSongFromLibrary();
 };
 
 #endif 

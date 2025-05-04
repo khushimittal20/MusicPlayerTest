@@ -11,6 +11,7 @@ private:
 public:
     void loadFromFile(const std::string& filename);
     void saveToFile(const std::string& filename) const;
+    bool deleteSong(const std::string& title);
 
     void addSong(const Song& song);
     void displayAllSongs() const;

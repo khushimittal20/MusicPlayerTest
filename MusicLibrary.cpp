@@ -1,7 +1,7 @@
 #include "MusicLibrary.h"
 #include <iostream>
 #include <fstream>
-#include <iostream>
+#include<algorithm>
 
 void MusicLibrary::addSong(const Song& song) {
     songs.push_back(song);
@@ -58,4 +58,15 @@ void MusicLibrary::saveToFile(const std::string& filename) const {
     } else {
         std::cout << "Failed to open file for saving.\n";
     }
+}
+bool MusicLibrary::deleteSong(const std::string& title) {
+    auto it = std::remove_if(songs.begin(), songs.end(), [&title](const Song& song) {
+        return song.getTitle() == title;
+    });
+
+    if (it != songs.end()) {
+        songs.erase(it, songs.end());
+        return true;
+    }
+    return false;
 }
