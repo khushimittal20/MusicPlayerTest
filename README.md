@@ -28,7 +28,7 @@ Use a C++ compiler with support for Windows libraries:
 ```bash
 g++ main.cpp Player.cpp MusicLibrary.cpp Playlist.cpp Song.cpp User.cpp -o music_player -lwinmm
 .\music_player
-
+```
 ## Future Improvements
 
 - Add volume control and mute/unmute functionality
