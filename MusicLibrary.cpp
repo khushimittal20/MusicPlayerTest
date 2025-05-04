@@ -36,7 +36,7 @@ void MusicLibrary::loadFromFile(const std::string& filename) {
         float duration;
         while (file >> title >> artist >> album >> duration >> filename) {
             Song song(title, artist, album, duration, filename);
-            addSong(song);  // Assuming addSong is already implemented
+            addSong(song);  // addSong already kr rkha hai
         }
         file.close();
     } else {

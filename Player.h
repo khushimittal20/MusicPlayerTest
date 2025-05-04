@@ -13,20 +13,20 @@ private:
     MusicLibrary library;
     Playlist* currentPlaylist;
     User user; 
-    std::vector<Playlist*> playlists;  // Store multiple playlists
+    std::vector<Playlist*> playlists;  
 public:
     Player();
     ~Player();  
-    MusicLibrary& getLibrary();  // Add this line
+    MusicLibrary& getLibrary();  
     void run();
     void addSongToLibrary();
     void addSongToPlaylist();
     void playSong(const Song& song);
     void playSongByTitle();
-    void createPlaylist();  // Add function to create a new playlist
-    void selectPlaylist();  // Add function to select an existing playlist
-    void deletePlaylist();  // Add function to delete a playlist
-    void deleteSongFromPlaylist();  // Add function to delete song
+    void createPlaylist();  
+    void selectPlaylist();  
+    void deletePlaylist();  
+    void deleteSongFromPlaylist();  
 };
 
 #endif 

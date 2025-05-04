@@ -17,11 +17,11 @@ void Song::display() const {
 std::string Song::getTitle() const {
     return title;
 }
-std::string Song::getArtist() const {  // Add this function
+std::string Song::getArtist() const {  
     return artist;
 }
 
-std::string Song::getAlbum() const {   // Add this function
+std::string Song::getAlbum() const {   
     return album;
 }
 std::string Song::getFilename() const {

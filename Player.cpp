@@ -9,7 +9,7 @@
 #pragma comment(lib, "winmm.lib") 
 
 MusicLibrary& Player::getLibrary() {
-    return library;  // Accessor method to get the library
+    return library;  
 }
 
 Player::Player() : user("admin", "1234") {
@@ -90,7 +90,7 @@ void Player::addSongToPlaylist() {
     Song* song = library.searchSong(title);
     if (song) {
         currentPlaylist->addSong(*song);
-        std::cout << "Added to playlist: " << song->getTitle() << "\n";  // Debugging line
+        std::cout << "Added to playlist: " << song->getTitle() << "\n";  
     } else {
         std::cout << "Song not found in library.\n";
     }
@@ -125,7 +125,7 @@ void Player::createPlaylist() {
 
     Playlist* newPlaylist = new Playlist(name);
     playlists.push_back(newPlaylist);
-    currentPlaylist = newPlaylist;  // Select the new playlist
+    currentPlaylist = newPlaylist;  // new vali banegi
     std::cout << "Playlist created and selected: " << name << "\n";
 }
 
