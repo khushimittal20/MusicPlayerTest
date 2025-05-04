@@ -1,1 +1,2 @@
 piano me mama 2 songs/trialPiano.wav
+violin me mama 2 songs/trialViolin.wav
