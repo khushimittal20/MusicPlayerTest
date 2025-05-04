@@ -14,19 +14,6 @@ This is a command-line based music player developed in C++ using Object-Oriented
 - Persistent storage of library and playlists using text files
 - Song playback using the WinMM library
 - Listening history tracking per user
-
-## Methodology
-
-- **Language:** C++
-- **Paradigm:** Object-Oriented Programming (encapsulation, inheritance, polymorphism)
-- **File Handling:** Used for storing songs, playlists, and user information
-- **Multimedia:** Used WinMM (`<windows.h>` and `<mmsystem.h>`) for `.wav` playback
-- **Design:** Modular file structure with separate header and source files for each class
-
-## File Structure
-![image](https://github.com/user-attachments/assets/2096b540-7011-4b61-8e77-dfb39cdd3254)
-
-
 ## How to Run
 
 ### Prerequisites
@@ -41,4 +28,29 @@ Use a C++ compiler with support for Windows libraries:
 ```bash
 g++ main.cpp Player.cpp MusicLibrary.cpp Playlist.cpp Song.cpp User.cpp -o music_player -lwinmm
 .\music_player
+
+## Future Improvements
+
+- Add volume control and mute/unmute functionality
+- Search songs by artist, album, or genre
+- Enhance playlist management with sorting and filtering
+- Introduce graphical user interface (GUI) using frameworks like Qt or SFML
+- Support for additional audio formats (e.g., MP3, FLAC) using libraries like SDL2 or FMOD
+- Online streaming support or integration with APIs
+- Cross-platform support (Linux/MacOS)
+
+## Methodology
+
+- **Language:** C++
+- **Paradigm:** Object-Oriented Programming (encapsulation, inheritance, polymorphism)
+- **File Handling:** Used for storing songs, playlists, and user information
+- **Multimedia:** Used WinMM (`<windows.h>` and `<mmsystem.h>`) for `.wav` playback
+- **Design:** Modular file structure with separate header and source files for each class
+
+## File Structure
+![image](https://github.com/user-attachments/assets/2096b540-7011-4b61-8e77-dfb39cdd3254)
+
+
+
+
 
