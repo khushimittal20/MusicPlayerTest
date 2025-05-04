@@ -69,3 +69,17 @@ bool User::validateLoginFromFile(const std::string& username, const std::string&
     }
     return false;
 }
+void User::addToHistory(const std::string& title) {
+    listeningHistory.push_back(title);
+}
+
+void User::showHistory() const {
+    std::cout << "\n=== Listening History ===\n";
+    if (listeningHistory.empty()) {
+        std::cout << "No songs played yet.\n";
+    } else {
+        for (const auto& title : listeningHistory) {
+            std::cout << "- " << title << "\n";
+        }
+    }
+}

@@ -74,6 +74,7 @@ void Player::run() {
         std::cout << "9. Delete Playlist\n";
         std::cout << "10. Delete Song from Playlist\n";
         std::cout << "11. Delete Song from Library\n";
+        std::cout << "12. View Listening History\n";
         std::cout << "0. Exit\n";
         std::cout << "Enter choice: ";
         std::cin >> choice;
@@ -91,6 +92,7 @@ void Player::run() {
             case 9: deletePlaylist(); break;
             case 10: deleteSongFromPlaylist(); break;
             case 11: deleteSongFromLibrary(); break;
+            case 12: user.showHistory(); break;
             case 0: std::cout << "Exiting Music Player.\n"; break;
             default: std::cout << "Invalid choice.\n";
         }
@@ -122,15 +124,15 @@ void Player::addSongToPlaylist() {
     }
 }
 
-void Player::playSong(const Song& song) {
-    std::cout << "Now Playing: " << song.getTitle() << std::endl;
-    PlaySound(song.getFilename().c_str(), NULL, SND_FILENAME | SND_ASYNC);
-    std::cout << "(Press Enter to stop playback)\n";
-    // std::cin.ignore();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+// void Player::playSong(const Song& song) {
+//     std::cout << "Now Playing: " << song.getTitle() << std::endl;
+//     PlaySound(song.getFilename().c_str(), NULL, SND_FILENAME | SND_ASYNC);
+//     std::cout << "(Press Enter to stop playback)\n";
+//     // std::cin.ignore();
+//     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    PlaySound(NULL, NULL, 0);
-}
+//     PlaySound(NULL, NULL, 0);
+// }
 
 void Player::playSongByTitle() {
     std::string title;
@@ -213,4 +215,12 @@ void Player::deleteSongFromLibrary() {
     } else {
         std::cout << "Song not found.\n";
     }
+}
+void Player::playSong(const Song& song) {
+    std::cout << "Now Playing: " << song.getTitle() << std::endl;
+    PlaySound(song.getFilename().c_str(), NULL, SND_FILENAME | SND_ASYNC);
+    user.addToHistory(song.getTitle());  
+    std::cout << "(Press Enter to stop playback)\n";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    PlaySound(NULL, NULL, 0);
 }
