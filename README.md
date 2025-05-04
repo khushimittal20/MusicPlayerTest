@@ -25,3 +25,18 @@ This is a command-line based music player developed in C++ using Object-Oriented
 
 ## File Structure
 
+## How to Run
+
+### Prerequisites
+
+- Windows OS (required for WinMM)
+- `.wav` audio files in the same directory or with absolute paths
+
+### Compilation Command
+
+Use a C++ compiler with support for Windows libraries:
+
+```bash
+g++ main.cpp Player.cpp MusicLibrary.cpp Playlist.cpp Song.cpp User.cpp -o music_player -lwinmm
+.\music_player
+
