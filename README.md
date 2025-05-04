@@ -38,6 +38,10 @@ g++ main.cpp Player.cpp MusicLibrary.cpp Playlist.cpp Song.cpp User.cpp -o music
 - **Multimedia:** Used WinMM (`<windows.h>` and `<mmsystem.h>`) for `.wav` playback
 - **Design:** Modular file structure with separate header and source files for each class
 
+## Sample Output
+![image](https://github.com/user-attachments/assets/9ba08ad8-fbbd-46c5-8163-410bcf92daf3)
+
+
 ## Future Improvements
 
 - Add volume control and mute/unmute functionality
