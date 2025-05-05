@@ -31,7 +31,7 @@ void Player::run() {
     std::cout << "Enter choice: ";
     std::cin >> choice;
     // std::cin.ignore(); 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignore leftover newline 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');   
 
     if (choice == 1) {  
         std::cout << "=== Login ===\n";
@@ -86,11 +86,11 @@ void Player::run() {
             case 2: library.displayAllSongs(); break;
             case 3: addSongToPlaylist(); break;
             case 4: showPlaylists(); break;
-            case 5: // Check if there are any playlists first
+            case 5: 
             if (playlists.empty()) {
                 std::cout << "No playlists available to play.\n";
             } else {
-                currentPlaylist->playAll();  // Play the playlist if available
+                currentPlaylist->playAll();  
             }
             break;
             // currentPlaylist->playAll(); break;
@@ -136,7 +136,7 @@ void Player::addSongToPlaylist() {
     std::cout << "Enter the playlist name to add song to: ";
     std::getline(std::cin, playlistName);
 
-    // Search for the playlist by name
+    
     Playlist* selectedPlaylist = nullptr;
     for (auto& playlist : playlists) {
         if (playlist->getName() == playlistName) {
@@ -150,13 +150,13 @@ void Player::addSongToPlaylist() {
         return;
     }
 
-    // Ask for song title
+    
     std::cout << "Enter the song title to add: ";
     std::getline(std::cin, title);
-    Song* song = library.searchSong(title);  // Search for song in library
+    Song* song = library.searchSong(title);  
 
     if (song) {
-        selectedPlaylist->addSong(*song);  // Add song to selected playlist
+        selectedPlaylist->addSong(*song);  
         std::cout << "Song added to playlist: " << playlistName << "\n";
     } else {
         std::cout << "Song not found in library.\n";
@@ -272,11 +272,11 @@ void Player::playSong(const Song& song) {
 // }
 void Player::showPlaylists() {
     if (playlists.empty()) {
-        std::cout << "No playlists available.\n";  // No playlists message
+        std::cout << "No playlists available.\n";  
     } else {
         std::cout << "=== Playlists ===\n";
         for (const auto& pl : playlists) {
-            std::cout << pl->getName() << std::endl;  // Access name of each playlist via pointer
+            std::cout << pl->getName() << std::endl;  
         }
     }
 }
